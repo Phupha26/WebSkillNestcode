@@ -179,3 +179,57 @@ body {
 @media (max-width: 520px) {
   .cta-group { flex-direction: column; }
 }
+/* ==== Characters row — single line, overlapped like banner ==== */
+.hero-characters{
+  /* ปรับขนาดและระยะทับกันจากที่นี่ */
+  --char-h: clamp(120px, 22vw, 260px);   /* ความสูงตัวละคร */
+  --overlap: 160px;                        /* ทับกันเท่าไหร่ ยิ่งมากยิ่งชิด */
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 0;                 /* ไม่มีช่องว่าง ใช้ margin ทับแทน */
+  flex-wrap: nowrap;      /* ให้อยู่บรรทัดเดียว */
+  overflow: visible;
+  margin-bottom: clamp(18px, 2.2vw, 28px);
+}
+
+.hero-characters .char{
+  height: var(--char-h);
+  width: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 10px 24px rgba(0,0,0,.6));
+  transition: transform .18s ease, filter .18s ease;
+  will-change: transform, filter;
+}
+
+/* ซ้อนรูป: รูปถัดไปจะขยับมาทับรูปก่อนหน้า */
+.hero-characters .char + .char{
+  margin-left: calc(var(--overlap) * -1);
+}
+
+/* ทำโค้งกลางเล็กน้อย (ไม่บังคับ จะลบได้) */
+.hero-characters .char:nth-child(1),
+.hero-characters .char:nth-last-child(1){ transform: translateY(18px); }
+.hero-characters .char:nth-child(2),
+.hero-characters .char:nth-last-child(2){ transform: translateY(14px); }
+.hero-characters .char:nth-child(3),
+.hero-characters .char:nth-last-child(3){ transform: translateY(10px); }
+
+/* ลำดับชั้นให้ตัวกลางอยู่บนสุด เวลา overlap จะไม่โดนบัง */
+.hero-characters .char{ z-index: 1; }
+.hero-characters .char:nth-child(5){ z-index: 9; }  /* ถ้ามี 9 ตัว ตัวที่ 5 คือกลาง */
+.hero-characters .char:nth-child(4), .hero-characters .char:nth-child(6){ z-index: 8; }
+.hero-characters .char:nth-child(3), .hero-characters .char:nth-child(7){ z-index: 7; }
+.hero-characters .char:nth-child(2), .hero-characters .char:nth-child(8){ z-index: 6; }
+.hero-characters .char:nth-child(1), .hero-characters .char:nth-child(9){ z-index: 5; }
+
+/* hover ให้ลอยนิดๆ */
+.hero-characters .char:hover{
+  transform: translateY(-4px) scale(1.03);
+  filter: drop-shadow(0 16px 32px rgba(0,0,0,.7));
+}
+
+/* มือถือ: ลดความสูงและระยะทับกันนิดหน่อย */
+@media (max-width: 640px){
+  .hero-characters{ --char-h: clamp(96px, 26vw, 160px); --overlap: 40px; }
+}
