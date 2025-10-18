@@ -57,7 +57,7 @@ body {
   letter-spacing: .2px;
   text-decoration: none;
   color: var(--text);
-  margin-left: 50px;
+  margin-left: 60px;
 }
 .brand span { color: var(--amber); }
 
@@ -234,5 +234,6 @@ body {
 @media (max-width: 640px){
   .hero-characters{ --char-h: clamp(96px, 26vw, 160px); --overlap: 40px; }
 }
+
 
 
