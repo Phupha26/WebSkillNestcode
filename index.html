@@ -1,38 +1,52 @@
-<!doctype html>
-<html lang="th">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>SkillNest — Login</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SkillNest</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <!-- โลโก้/แบรนด์ มุมซ้ายบน -->
-  <div class="brand">SkillNest</div>
+  <div class="noise"></div>
 
-  <!-- กล่องฟอร์ม -->
-  <div class="wrap">
-    <div class="card">
-      <div class="title-th">เข้าสู่ระบบ</div>
-
-      <div id="error" class="error"></div>
-
-      <form id="loginForm" novalidate>
-        <div class="field">
-          <input class="pill" id="username" type="text" placeholder="Username" required>
-        </div>
-
-        <div class="field input-wrap">
-          <input class="pill" id="password" type="password" placeholder="Password" required>
-          <button type="button" class="toggle-pass" id="togglePass">แสดง</button>
-        </div>
-
-        <div class="actions">
-          <button class="btn" id="loginBtn" type="submit">Login</button>
-        </div>
-      </form>
+  <header class="site-header">
+    <div class="container nav">
+      <a class="brand" href="#">Skill<span>Nest</span></a>
+      <nav class="nav-actions">
+        <button class="btn btn-amber">Sign in</button>
+        <button class="btn btn-lime">Login</button>
+      </nav>
     </div>
-  </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-bg-glow"></div>
+      <div class="container hero-inner">
+        <h1 class="hero-title">Ready To SkillNest</h1>
+        <div class="cta-group">
+          <a href="#" class="btn btn-cta">LET’S RUMBLE</a>
+          <a href="#explore" class="btn btn-outline">EXPLORE NOW</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="explore" class="placeholder">
+      <div class="container">
+        <h2>Explore</h2>
+        <p>This section is a placeholder for your content modules, cards, or feature grid.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>© <span id="year"></span> SkillNest All rights reserved.</p>
+    </div>
+  </footer>
 
   <script src="script.js"></script>
 </body>
