@@ -9,13 +9,14 @@
 <body class="login-page">
   <div class="form-container">
     <h2>Login to SkillNest</h2>
-    <form>
-      <input type="email" placeholder="Email" required>
-      <input type="password" placeholder="Password" required>
+    <form id="loginForm"> 
+      <input type="email" placeholder="Email" required id="email"> 
+      <input type="password" placeholder="Password" required id="password">
+      <p id="error-msg" style="color: #ff5555; margin-bottom: 1rem;"></p>
       <button type="submit" class="btn btn-amber">Login</button>
       <p>Don't have an account? <a href="signup.html">Sign up</a></p>
     </form>
   </div>
+  <script src="auth-demo.js"></script> 
 </body>
 </html>
-
