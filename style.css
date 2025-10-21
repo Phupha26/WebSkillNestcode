@@ -292,3 +292,61 @@ body.login-page {
 .form-container a:hover {
   text-decoration: underline;
 }
+
+/* login / dashboard */
+body.login-page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background: radial-gradient(circle at top, #222, #000);
+}
+
+.form-container {
+  width: 320px;
+  background: rgba(20,20,20,0.9);
+  padding: 2rem;
+  border-radius: 14px;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.6);
+  text-align: center;
+}
+
+.form-container h2 {
+  margin-bottom: 1.2rem;
+  color: #ff9a1f;
+}
+
+.form-container input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 1rem;
+  border: none;
+  border-radius: 8px;
+  background: #111;
+  color: white;
+}
+
+.form-container button {
+  width: 100%;
+}
+
+.form-container p {
+  margin-top: 1rem;
+  color: #bbb;
+}
+
+/* New style for Logged In User Display */
+.user-display {
+  color: var(--text);
+  font-weight: 600;
+  padding: .7rem 1.1rem;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  border-radius: 12px;
+  background-color: rgba(255,255,255,0.08); /* พื้นหลังจางๆ */
+  transition: background-color .2s ease;
+}
+.user-display:hover {
+  background-color: rgba(255,255,255,0.15);
+}
