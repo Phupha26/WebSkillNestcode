@@ -1,299 +1,280 @@
-:root {
-  --bg: #0a0a0a;
-  --bg-2: #0f0f0f;
-  --text: #f7f7f7;
-  --muted: #bdbdbd;
-  --amber: #f6c544;
-  --amber-strong: #ffb300;
-  --lime: #8fd53c;
-  --orange: #ff7a00;
-  --orange-2: #ff9a1f;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-* { box-sizing: border-box; margin: 0; padding: 0; }
-html, body { height: 100%; }
 body {
-  font-family: "Poppins", sans-serif;
-  color: var(--text);
-  background: radial-gradient(1000px 500px at 50% -10%, #1b1b1b 0%, var(--bg) 50%, #000 100%);
+  font-family: 'Poppins', sans-serif;
+  background: #000;
+  color: #fff;
   overflow-x: hidden;
+  position: relative;
 }
 
-/* container */
-.container {
-  width: min(1200px, 92%);
-  margin-inline: auto;
-}
-
-/* Noise overlay */
+/* Noise Effect */
 .noise {
   position: fixed;
-  inset: 0;
-  pointer-events: none;
-  opacity: 0.06;
-  mix-blend-mode: soft-light;
-  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="160" height="160" viewBox="0 0 160 160"><filter id="n"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" stitchTiles="stitch"/></filter><rect width="100%" height="100%" filter="url(%23n)" opacity="0.35"/></svg>');
-  background-size: 160px 160px;
-}
-
-/* ===== Header ===== */
-.site-header {
-  position: sticky;
   top: 0;
-  z-index: 20;
-  background: linear-gradient(180deg, rgba(10,10,10,.9), rgba(10,10,10,.4) 70%, rgba(10,10,10,0));
-  backdrop-filter: saturate(140%) blur(6px);
-  border-bottom: 1px solid rgba(255,255,255,.06);
-}
-.site-header .btn{
-  font-size: clamp(.95rem, 1.1vw, 1.05rem);  /* ← ตัวหนังสือใหญ่ขึ้น */
-  padding: .85rem 1.25rem;                   /* ← ปุ่มหนาขึ้น */
-  border-radius: 14px;                       /* มนขึ้น */
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  opacity: 0.05;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  z-index: 9999;
 }
 
-/* เงาให้ดูชัดขึ้นนิด */
-.site-header .btn-amber{ box-shadow: 0 10px 26px -6px rgba(246,197,68,.55); }
-.site-header .btn-lime{  box-shadow: 0 10px 26px -6px rgba(161,245,90,.45);  }
-
-.nav{
-  display:flex;
-  align-items:center;
-  justify-content:flex-start;   /* ← ใช้ตัวนี้ */
-  padding: 12px 24px;           /* ขอบซ้าย–ขวา */
+/* Container */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
 }
-.brand{
-  font-weight: 900;
-  font-size: clamp(1.4rem, 2.2vw, 2.1rem);  /* ← ใหญ่ขึ้น */
-  letter-spacing: .3px;
+
+/* Header */
+.site-header {
+  padding: 1.5rem 0;
+  position: relative;
+  z-index: 100;
+}
+
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.brand {
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: #fff;
   text-decoration: none;
-  color: var(--text);
-  margin-left: 0;               /* ไม่ต้อง margin ถ้าอยากชิดซ้ายจริง ๆ */
-  padding-left: 8px;            /* จะเว้นนิดหน่อยก็ได้ */
-}
-.brand span{ color: var(--amber); }
-
-.nav-actions{
-  margin-left:auto;             /* ← ดันไปชิดขวา */
-  display:flex;
-  gap: .9rem;
+  letter-spacing: -0.5px;
 }
 
+.brand span {
+  color: #FFD700;
+}
+
+.nav-actions {
+  display: flex;
+  gap: 1rem;
+}
+
+/* Buttons */
 .btn {
-  appearance: none;
-  border: none;
-  cursor: pointer;
-  font-weight: 700;
-  letter-spacing: .2px;
-  padding: .7rem 1.1rem;
-  border-radius: 12px;
-  transition: transform .12s ease, box-shadow .2s ease;
+  padding: 0.75rem 2rem;
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  display: inline-block;
 }
-.btn:active { transform: translateY(1px); }
 
 .btn-amber {
-  color: #1a1500;
-  background: linear-gradient(180deg, var(--amber), var(--amber-strong));
-  box-shadow: 0 8px 24px -6px rgba(246,197,68,.45);
+  background: #FFA500;
+  color: #000;
 }
+
 .btn-amber:hover {
-  box-shadow: 0 12px 32px -8px rgba(246,197,68,.55);
+  background: #FF8C00;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 20px rgba(255, 165, 0, 0.4);
 }
 
 .btn-lime {
-  color: #0e2100;
-  background: linear-gradient(180deg, #a1f55a, var(--lime));
-  box-shadow: 0 8px 24px -6px rgba(161,245,90,.35);
-}
-.btn-lime:hover {
-  box-shadow: 0 12px 32px -8px rgba(161,245,90,.5);
+  background: #9ACD32;
+  color: #000;
 }
 
-/* ===== Hero Section ===== */
+.btn-lime:hover {
+  background: #7FB800;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 20px rgba(154, 205, 50, 0.4);
+}
+
+/* Hero Section */
 .hero {
   position: relative;
-  padding: 160px 0 48px;
-  text-align: center;
-}
-.hero-bg-glow {
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  background:
-    radial-gradient(1000px 400px at 50% 20%, rgba(255,154,31,.15), transparent 60%),
-    radial-gradient(700px 300px at 70% 10%, rgba(255,122,0,.18), transparent 60%),
-    radial-gradient(600px 260px at 30% 8%, rgba(255,122,0,.12), transparent 60%);
-}
-
-.hero-title {
-  font-size: clamp(2.5rem, 6vw, 5rem);
-  line-height: 1.1;
-  font-weight: 900;
-  color: transparent;
-  background: linear-gradient(180deg, #ff9a1f, #ff7a00 60%, #ff7a00);
-  -webkit-background-clip: text;
-  background-clip: text;
-  text-shadow: 0 4px 24px rgba(255,122,0,.15);
-}
-
-.cta-group {
-  display: flex;
-  justify-content: center;
-  gap: 22px;
-  margin-top: 18px;
-}
-
-/* ปุ่มสองอันเป็นลิงก์ตัวหนังสือ */
-.hero .btn-cta,
-.hero .btn-outline {
-  background: transparent !important;
-  border: none !important;
-  padding: 0 !important;
-  box-shadow: none !important;
-  text-decoration: underline;
-  font-weight: 700;
-  cursor: pointer;
-}
-
-.hero .btn-cta {
-  color: #4ea1ff;
-}
-.hero .btn-outline {
-  color: #a57bff;
-}
-.hero .btn-cta:hover,
-.hero .btn-outline:hover {
-  opacity: .8;
-}
-
-/* ===== Placeholder & Footer ===== */
-.placeholder {
-  padding: 72px 0;
-  background: linear-gradient(180deg, var(--bg), var(--bg-2));
-  border-top: 1px solid rgba(255,255,255,.06);
-}
-.placeholder h2 {
-  font-size: 1.3rem;
-  margin-bottom: 8px;
-}
-.placeholder p {
-  color: var(--muted);
-}
-
-.site-footer {
-  padding: 32px 0;
-  border-top: 1px solid rgba(255,255,255,.06);
-  text-align: left;
-}
-.site-footer p {
-  color: var(--muted);
-}
-
-/* Responsive */
-@media (max-width: 520px){
-  .nav{ padding: 10px 16px; }
-  .site-header .btn{ padding: .7rem 1rem; }
-
-}
-/* ==== Characters row — single line, overlapped like banner ==== */
-.hero-characters{
-  /* ปรับขนาดและระยะทับกันจากที่นี่ */
-  --char-h: clamp(120px, 22vw, 260px);   /* ความสูงตัวละคร */
-  --overlap: 160px;                        /* ทับกันเท่าไหร่ ยิ่งมากยิ่งชิด */
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
-  gap: 0;                 /* ไม่มีช่องว่าง ใช้ margin ทับแทน */
-  flex-wrap: nowrap;      /* ให้อยู่บรรทัดเดียว */
-  overflow: visible;
-  margin-bottom: clamp(18px, 2.2vw, 28px);
-}
-
-.hero-characters .char{
-  height: var(--char-h);
-  width: auto;
-  object-fit: contain;
-  filter: drop-shadow(0 10px 24px rgba(0,0,0,.6));
-  transition: transform .18s ease, filter .18s ease;
-  will-change: transform, filter;
-}
-
-/* ซ้อนรูป: รูปถัดไปจะขยับมาทับรูปก่อนหน้า */
-.hero-characters .char + .char{
-  margin-left: calc(var(--overlap) * -1);
-}
-
-/* ทำโค้งกลางเล็กน้อย (ไม่บังคับ จะลบได้) */
-.hero-characters .char:nth-child(1),
-.hero-characters .char:nth-last-child(1){ transform: translateY(18px); }
-.hero-characters .char:nth-child(2),
-.hero-characters .char:nth-last-child(2){ transform: translateY(14px); }
-.hero-characters .char:nth-child(3),
-.hero-characters .char:nth-last-child(3){ transform: translateY(10px); }
-
-/* ลำดับชั้นให้ตัวกลางอยู่บนสุด เวลา overlap จะไม่โดนบัง */
-.hero-characters .char{ z-index: 1; }
-.hero-characters .char:nth-child(5){ z-index: 9; }  /* ถ้ามี 9 ตัว ตัวที่ 5 คือกลาง */
-.hero-characters .char:nth-child(4), .hero-characters .char:nth-child(6){ z-index: 8; }
-.hero-characters .char:nth-child(3), .hero-characters .char:nth-child(7){ z-index: 7; }
-.hero-characters .char:nth-child(2), .hero-characters .char:nth-child(8){ z-index: 6; }
-.hero-characters .char:nth-child(1), .hero-characters .char:nth-child(9){ z-index: 5; }
-
-/* hover ให้ลอยนิดๆ */
-.hero-characters .char:hover{
-  transform: translateY(-4px) scale(1.03);
-  filter: drop-shadow(0 16px 32px rgba(0,0,0,.7));
-}
-
-/* มือถือ: ลดความสูงและระยะทับกันนิดหน่อย */
-@media (max-width: 640px){
-  .hero-characters{ --char-h: clamp(96px, 26vw, 160px); --overlap: 40px; }
-}
-/* ==== Login/Signup Page ==== */
-body.login-page {
+  min-height: 80vh;
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 100vh;
-  background: radial-gradient(circle at top, #222, #000);
+  padding: 4rem 0;
+  overflow: hidden;
 }
 
-.form-container {
-  width: 320px;
-  background: rgba(20,20,20,0.9);
-  padding: 2rem;
-  border-radius: 14px;
-  box-shadow: 0 8px 30px rgba(0,0,0,0.6);
+.hero-bg-glow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 800px;
+  height: 800px;
+  background: radial-gradient(circle, rgba(255, 165, 0, 0.2) 0%, transparent 70%);
+  filter: blur(80px);
+  pointer-events: none;
+}
+
+.hero-inner {
+  position: relative;
+  z-index: 10;
   text-align: center;
 }
 
-.form-container h2 {
-  margin-bottom: 1.2rem;
-  color: #ff9a1f;
+/* Characters */
+.hero-characters {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 3rem;
+  flex-wrap: wrap;
 }
 
-.form-container input {
-  width: 100%;
-  padding: 10px;
-  margin-bottom: 1rem;
-  border: none;
-  border-radius: 8px;
-  background: #111;
-  color: white;
+.char {
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
+  filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.5));
+  transition: transform 0.3s ease;
+  animation: float 3s ease-in-out infinite;
 }
 
-.form-container button {
-  width: 100%;
+.char:nth-child(1) { animation-delay: 0s; }
+.char:nth-child(2) { animation-delay: 0.2s; }
+.char:nth-child(3) { animation-delay: 0.4s; }
+.char:nth-child(4) { animation-delay: 0.6s; }
+.char:nth-child(5) { animation-delay: 0.8s; }
+.char:nth-child(6) { animation-delay: 1s; }
+.char:nth-child(7) { animation-delay: 1.2s; }
+.char:nth-child(8) { animation-delay: 1.4s; }
+.char:nth-child(9) { animation-delay: 1.6s; }
+
+.char--center {
+  width: 120px;
+  height: 120px;
 }
 
-.form-container p {
-  margin-top: 1rem;
-  color: #bbb;
+.char:hover {
+  transform: scale(1.15) translateY(-10px);
 }
 
-.form-container a {
-  color: #4ea1ff;
-  text-decoration: none;
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-15px);
+  }
 }
-.form-container a:hover {
-  text-decoration: underline;
+
+/* Hero Title */
+.hero-title {
+  font-size: 5rem;
+  font-weight: 900;
+  background: linear-gradient(135deg, #FF6B35, #FFA500, #FFD700);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-transform: capitalize;
+  margin-bottom: 2rem;
+  line-height: 1.2;
+  letter-spacing: -2px;
+}
+
+/* Hero Content */
+.hero-content {
+  margin-top: 2rem;
+  text-align: center;
+}
+
+.hero-subtitle {
+  background: linear-gradient(135deg, #FFA500, #FFD700);
+  color: #000;
+  padding: 0.75rem 2rem;
+  border-radius: 50px;
+  display: inline-block;
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 4px 15px rgba(255, 165, 0, 0.3);
+  transition: all 0.3s ease;
+}
+
+.hero-subtitle:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 25px rgba(255, 165, 0, 0.5);
+}
+
+.hero-description {
+  color: #FF6B35;
+  font-size: 1.2rem;
+  font-weight: 500;
+  max-width: 800px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+.hero-description .highlight {
+  color: #FFD700;
+  font-weight: 700;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .hero-title {
+    font-size: 3rem;
+  }
+  
+  .char {
+    width: 70px;
+    height: 70px;
+  }
+  
+  .char--center {
+    width: 90px;
+    height: 90px;
+  }
+  
+  .hero-subtitle {
+    font-size: 1rem;
+    padding: 0.6rem 1.5rem;
+  }
+  
+  .hero-description {
+    font-size: 1rem;
+    padding: 0 1rem;
+  }
+  
+  .nav-actions {
+    gap: 0.5rem;
+  }
+  
+  .btn {
+    padding: 0.6rem 1.5rem;
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-title {
+    font-size: 2.5rem;
+  }
+  
+  .brand {
+    font-size: 1.5rem;
+  }
+  
+  .char {
+    width: 50px;
+    height: 50px;
+  }
+  
+  .char--center {
+    width: 70px;
+    height: 70px;
+  }
 }
