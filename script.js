@@ -33,7 +33,7 @@ const careerCtaBtn = document.getElementById('careerCtaBtn');
 if (careerCtaBtn) {
     careerCtaBtn.addEventListener('click', () => {
         // เปลี่ยนหน้าไปยัง Career.html
-        window.location.href = "Career.html"; 
+        window.location.href = "career.html"; 
     });
 }
 
@@ -47,3 +47,4 @@ if (y) y.textContent = new Date().getFullYear();
 
 // โค้ด scroll smooth เดิมถูกละไว้ หากไม่ต้องการ
 // ถ้าคุณต้องการให้ปุ่มอื่น ๆ มี scroll smooth ให้เพิ่มโค้ดที่เกี่ยวข้องกลับเข้ามา
+
