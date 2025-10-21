@@ -45,25 +45,37 @@ body {
   backdrop-filter: saturate(140%) blur(6px);
   border-bottom: 1px solid rgba(255,255,255,.06);
 }
-.nav {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 16px 0;
+.site-header .btn{
+  font-size: clamp(.95rem, 1.1vw, 1.05rem);  /* ← ตัวหนังสือใหญ่ขึ้น */
+  padding: .85rem 1.25rem;                   /* ← ปุ่มหนาขึ้น */
+  border-radius: 14px;                       /* มนขึ้น */
 }
-.brand {
-  font-weight: 800;
-  font-size: 1.35rem;
-  letter-spacing: .2px;
+
+/* เงาให้ดูชัดขึ้นนิด */
+.site-header .btn-amber{ box-shadow: 0 10px 26px -6px rgba(246,197,68,.55); }
+.site-header .btn-lime{  box-shadow: 0 10px 26px -6px rgba(161,245,90,.45);  }
+
+.nav{
+  display:flex;
+  align-items:center;
+  justify-content:flex-start;   /* ← ใช้ตัวนี้ */
+  padding: 12px 24px;           /* ขอบซ้าย–ขวา */
+}
+.brand{
+  font-weight: 900;
+  font-size: clamp(1.4rem, 2.2vw, 2.1rem);  /* ← ใหญ่ขึ้น */
+  letter-spacing: .3px;
   text-decoration: none;
   color: var(--text);
-  margin-left: 60px;
+  margin-left: 0;               /* ไม่ต้อง margin ถ้าอยากชิดซ้ายจริง ๆ */
+  padding-left: 8px;            /* จะเว้นนิดหน่อยก็ได้ */
 }
-.brand span { color: var(--amber); }
+.brand span{ color: var(--amber); }
 
-.nav-actions {
-  display: flex;
-  gap: .75rem;
+.nav-actions{
+  margin-left:auto;             /* ← ดันไปชิดขวา */
+  display:flex;
+  gap: .9rem;
 }
 
 .btn {
@@ -177,8 +189,10 @@ body {
 }
 
 /* Responsive */
-@media (max-width: 520px) {
-  .cta-group { flex-direction: column; }
+@media (max-width: 520px){
+  .nav{ padding: 10px 16px; }
+  .site-header .btn{ padding: .7rem 1rem; }
+
 }
 /* ==== Characters row — single line, overlapped like banner ==== */
 .hero-characters{
@@ -234,6 +248,52 @@ body {
 @media (max-width: 640px){
   .hero-characters{ --char-h: clamp(96px, 26vw, 160px); --overlap: 40px; }
 }
+/* ==== Login/Signup Page ==== */
+body.login-page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background: radial-gradient(circle at top, #222, #000);
+}
 
+.form-container {
+  width: 320px;
+  background: rgba(20,20,20,0.9);
+  padding: 2rem;
+  border-radius: 14px;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.6);
+  text-align: center;
+}
 
+.form-container h2 {
+  margin-bottom: 1.2rem;
+  color: #ff9a1f;
+}
 
+.form-container input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 1rem;
+  border: none;
+  border-radius: 8px;
+  background: #111;
+  color: white;
+}
+
+.form-container button {
+  width: 100%;
+}
+
+.form-container p {
+  margin-top: 1rem;
+  color: #bbb;
+}
+
+.form-container a {
+  color: #4ea1ff;
+  text-decoration: none;
+}
+.form-container a:hover {
+  text-decoration: underline;
+}
