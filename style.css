@@ -350,3 +350,116 @@ body.login-page {
 .user-display:hover {
   background-color: rgba(255,255,255,0.15);
 }
+/* ===== Career Page Styles ===== */
+
+.career-section {
+    padding: 100px 0;
+    text-align: center;
+    /* จำลองพื้นหลังเป็นแผนที่โลกตามภาพที่สอง */
+    background-image: url('Photo/bg.png'); /* สมมติว่ามีไฟล์ภาพพื้นหลังชื่อ map-bg.jpg */
+    background-size: cover;
+    background-position: center;
+    position: sticky;
+}
+
+.career-section::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.7); /* เพิ่มความมืดเพื่อให้ตัวอักษรเด่นขึ้น */
+    z-index: 1;
+}
+
+.career-section .container {
+    position: relative;
+    z-index: 2;
+}
+
+.career-title {
+    font-size: clamp(3rem, 6vw, 4.5rem);
+    font-weight: 900;
+    margin-bottom: 3rem;
+    color: var(--orange-2); /* ใช้สีส้มจากตัวแปรที่คุณมี */
+    text-shadow: 0 4px 12px rgba(255,122,0,.3);
+}
+
+.career-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.career-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(20, 20, 20, 0.9);
+    padding: 30px 15px;
+    border-radius: 12px;
+    text-decoration: none;
+    color: var(--text);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.career-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
+    background-color: rgba(30, 30, 30, 0.95);
+}
+
+.career-card img {
+    width: 60px;
+    height: 60px;
+    margin-bottom: 15px;
+    filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.2));
+}
+
+.career-card h3 {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin: 0;
+}
+
+/* Responsive ปรับการแสดงผลสำหรับมือถือ */
+@media (max-width: 900px) {
+    .career-grid {
+        grid-template-columns: repeat(2, 1fr); /* 2 คอลัมน์สำหรับแท็บเล็ต */
+    }
+}
+@media (max-width: 600px) {
+    .career-grid {
+        grid-template-columns: 1fr; /* 1 คอลัมน์สำหรับมือถือ */
+    }
+    .career-title {
+        font-size: 2.5rem;
+    }
+}
+/* ===== Career Page Styles ===== */
+
+.career-section {
+    padding: 100px 0;
+    text-align: center;
+    /* การตั้งค่าเพื่อให้ภาพพื้นหลังครอบคลุมเต็มพื้นที่ */
+    background-image: url('Photo/bg.png'); /* ชื่อไฟล์ที่คุณใช้ */
+    background-size: cover; /* **ส่วนสำคัญ: ทำให้ภาพครอบคลุมเต็มพื้นที่** */
+    background-position: center;
+    background-repeat: no-repeat;
+    /* background-attachment: fixed;  **ไม่จำเป็นต้องใช้ ถ้าต้องการให้เลื่อนตามเนื้อหา** */
+    position: relative;
+    /* **เพิ่มความสูงขั้นต่ำให้เต็มหน้าจอ หากเนื้อหาน้อย** */
+    min-height: 100vh; 
+}
+
+.career-section::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.7); /* เพิ่มความมืดเพื่อให้ตัวอักษรเด่นขึ้น */
+    z-index: 1;
+}
+
+/* ส่วนที่เหลือของ .career-section::before และ .career-title... */
