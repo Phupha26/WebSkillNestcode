@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Programmer Planning | SkillNest</title>
+  <link rel="icon" type="image/png" href="../../Photo/SkillNest_logo.png">
+  <link rel="stylesheet" href="../../css/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800;900&display=swap" rel="stylesheet">
+</head>
+<body class="story-page programmer-planning-page">
+  <div class="noise"></div>
+
+  <!-- Click to Start Message -->
+  <div id="clickToStartMessage" style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); 
+       color: var(--amber); font-size: 1.5rem; font-weight: 600; z-index: 50; 
+       text-align: center; pointer-events: none;">
+    Click anywhere to start
+  </div>
+
+  <!-- Game Characters -->
+  <div class="game-character char-player" id="playerChar"></div>
+  <div class="game-character char-mentor" id="mentorChar"></div>
+
+  <!-- Story Container -->
+  <div class="story-container">
+    <!-- Dialogue Box -->
+    <div id="dialogue-box" class="dialogue-box">
+      <div id="dialogue-name" class="dialogue-name"></div>
+      <div id="dialogue-text" class="dialogue-text"></div>
+      <div id="dialogue-choices" class="dialogue-choices"></div>
+      <button id="next-dialogue-btn" class="btn btn-amber dialogue-next-btn" style="display: none;">Next</button>
+    </div>
+
+    <!-- Result Screen -->
+    <div id="result-screen" class="result-screen" style="display: none;">
+      <h2 id="result-heading"></h2>
+      <p id="result-message"></p>
+      <button id="goToNextBtn" class="btn btn-lime">Go to Lesson</button>
+    </div>
+  </div>
+
+  <script type="module" src="../../js/programmer-planning.js"></script>
+</body>
+</html>

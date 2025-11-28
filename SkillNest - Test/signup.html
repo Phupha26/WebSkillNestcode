@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign Up | SkillNest</title>
+  <link rel="icon" type="image/png" href="Photo/SkillNest_logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0a0a0a;
+      --bg-2: #0f0f0f;
+      --text: #f7f7f7;
+      --muted: #bdbdbd;
+      --amber: #f6c544;
+      --amber-strong: #ffb300;
+      --orange: #ff9a1f;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { height: 100%; }
+    body {
+      font-family: "Poppins", sans-serif;
+      color: var(--text);
+      background: radial-gradient(1000px 500px at 50% -10%, #1b1b1b 0%, var(--bg) 50%, #000 100%);
+      overflow-x: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .noise {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      opacity: 0.06;
+      mix-blend-mode: soft-light;
+      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="160" height="160" viewBox="0 0 160 160"><filter id="n"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" stitchTiles="stitch"/></filter><rect width="100%" height="100%" filter="url(%23n)" opacity="0.35"/></svg>');
+      background-size: 160px 160px;
+    }
+
+    .hero-bg-glow {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      background:
+        radial-gradient(1000px 400px at 50% 20%, rgba(255,154,31,.15), transparent 60%),
+        radial-gradient(700px 300px at 70% 10%, rgba(255,122,0,.18), transparent 60%),
+        radial-gradient(600px 260px at 30% 8%, rgba(255,122,0,.12), transparent 60%);
+      pointer-events: none;
+    }
+
+    .login-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      position: relative;
+      z-index: 1;
+      padding: 30px 20px 20px;
+      width: 100%;
+      max-width: 700px;
+      min-height: 100vh;
+    }
+
+    .logo-section {
+      text-align: center;
+      margin-bottom: 2.5rem;
+      margin-top: 0;
+    }
+
+    .logo-section img {
+      width: 100%;
+      max-width: 600px;
+      height: auto;
+      filter: drop-shadow(0 8px 20px rgba(255, 122, 0, 0.3));
+      margin-bottom: 1.5rem;
+    }
+
+    .logo-title {
+      font-size: clamp(1.5rem, 3vw, 2rem);
+      font-weight: 600;
+      color: var(--orange);
+      margin-bottom: 0.5rem;
+    }
+
+    .logo-subtitle {
+      font-size: clamp(0.95rem, 1.5vw, 1.1rem);
+      color: var(--text);
+      font-weight: 400;
+    }
+
+    .form-container {
+      width: 100%;
+      max-width: 420px;
+      background: rgba(20,20,20,0.9);
+      padding: 2.5rem 3rem;
+      border-radius: 14px;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.6);
+      text-align: center;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .form-container h2 {
+      margin-bottom: 1.5rem;
+      color: #ff9a1f;
+      font-size: 1.8rem;
+    }
+
+    .form-container input {
+      width: 100%;
+      padding: 12px 15px;
+      margin-bottom: 1.2rem;
+      border: none;
+      border-radius: 8px;
+      background: #111;
+      color: white;
+      font-size: 1rem;
+    }
+
+    .form-container input::placeholder {
+      color: #666;
+    }
+
+    .btn {
+      appearance: none;
+      border: none;
+      cursor: pointer;
+      font-weight: 700;
+      letter-spacing: .2px;
+      padding: .85rem 1.3rem;
+      border-radius: 12px;
+      transition: transform .12s ease, box-shadow .2s ease;
+      text-decoration: none;
+      display: inline-block;
+      width: 100%;
+      font-family: "Poppins", sans-serif;
+      font-size: 1.05rem;
+    }
+
+    .btn:active { 
+      transform: translateY(1px); 
+    }
+
+    .btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    .btn-amber {
+      color: #1a1500;
+      background: linear-gradient(180deg, var(--amber), var(--amber-strong));
+      box-shadow: 0 8px 24px -6px rgba(246,197,68,.45);
+    }
+
+    .btn-amber:hover:not(:disabled) {
+      box-shadow: 0 12px 32px -8px rgba(246,197,68,.55);
+      transform: translateY(-2px);
+    }
+
+    .form-container p {
+      margin-top: 1rem;
+      color: #bbb;
+      font-size: 0.95rem;
+    }
+
+    .form-container a {
+      color: #4ea1ff;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .form-container a:hover {
+      text-decoration: underline;
+    }
+
+    #error-msg {
+      color: #ff5555;
+      margin-bottom: 1rem;
+      min-height: 20px;
+      font-size: 0.9rem;
+    }
+
+    #success-msg {
+      color: #4ade80;
+      margin-bottom: 1rem;
+      min-height: 20px;
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 520px) {
+      .form-container {
+        width: 90%;
+        padding: 2rem 1.5rem;
+      }
+
+      .logo-section img {
+        max-width: 380px;
+      }
+
+      .form-container h2 {
+        font-size: 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="noise"></div>
+  <div class="hero-bg-glow"></div>
+  
+  <div class="login-container">
+    <div class="logo-section">
+      <img src="Photo/SkillNest_logotext.png" alt="SkillNest Logo">
+      <h1 class="logo-title">Create your SkillNest account</h1>
+      <p class="logo-subtitle">Start your learning journey with us today</p>
+    </div>
+
+    <div class="form-container">
+      <h2>Sign Up to SkillNest</h2>
+      <form id="signupForm"> 
+        <input type="text" placeholder="First Name" required id="firstName"> 
+        <input type="text" placeholder="Last Name" required id="lastName"> 
+        <input type="email" placeholder="Email" required id="email" autocomplete="email"> 
+        <input type="password" placeholder="Password" required id="password" autocomplete="new-password">
+        <input type="password" placeholder="Confirm Password" required id="confirmPassword" autocomplete="new-password">
+        <p id="error-msg"></p>
+        <p id="success-msg"></p>
+        <button type="submit" class="btn btn-amber" id="signupBtn">Sign Up</button>
+        <p>Already have an account? <a href="login.html">Login</a></p>
+      </form>
+    </div>
+
+    <p style="margin-top: 20px; color: var(--muted); font-size: 0.95rem;">
+      <a href="index.html" style="color: var(--amber); text-decoration: none; font-weight: 600;">Go back to the homepage</a>
+    </p>
+  </div>
+
+  <script type="module">
+  import { signupUser, saveUserProfile } from "./js/firebase-auth-service.js";
+
+  const form = document.getElementById("signupForm");
+  const errorMsg = document.getElementById("error-msg");
+  const successMsg = document.getElementById("success-msg");
+  const signupBtn = document.getElementById("signupBtn");
+
+  function validatePasswords(password, confirmPassword) {
+    if (password !== confirmPassword) {
+      errorMsg.textContent = "⚠ Passwords do not match";
+      return false;
+    }
+    if (password.length < 6) {
+      errorMsg.textContent = "⚠ Password must be at least 6 characters";
+      return false;
+    }
+    return true;
+  }
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const firstName = document.getElementById("firstName").value.trim();
+    const lastName = document.getElementById("lastName").value.trim();
+    const email = document.getElementById("email").value.trim();
+    const password = document.getElementById("password").value.trim();
+    const confirmPassword = document.getElementById("confirmPassword").value.trim();
+
+    errorMsg.textContent = "";
+    successMsg.textContent = "";
+
+    if (!firstName || !lastName || !email || !password || !confirmPassword) {
+      errorMsg.textContent = "⚠ Please fill in all fields";
+      return;
+    }
+
+    if (!validatePasswords(password, confirmPassword)) {
+      return;
+    }
+
+    signupBtn.disabled = true;
+    signupBtn.textContent = "Signing up...";
+
+    try {
+      const authResult = await signupUser(email, password);
+
+      if (authResult.success) {
+        const user = authResult.user;
+
+        const profileData = {
+          firstName,
+          lastName,
+          email,
+          progress: {},
+          createdAt: new Date().toISOString(),
+          lastActivity: new Date().toISOString(),
+        };
+
+        const saveResult = await saveUserProfile(user.uid, profileData);
+
+        if (saveResult.success) {
+          successMsg.textContent = `✓ Registration successful! Welcome ${firstName}`;
+          setTimeout(() => {
+            window.location.href = "index.html";
+          }, 1500);
+        } else {
+          throw new Error(saveResult.message || "Failed to save profile");
+        }
+      } else {
+        errorMsg.textContent = "⚠ " + authResult.message;
+      }
+    } catch (error) {
+      errorMsg.textContent = "⚠ An error occurred: " + error.message;
+    }
+
+    signupBtn.disabled = false;
+    signupBtn.textContent = "Sign Up";
+  });
+</script>
+</body>
+</html>
