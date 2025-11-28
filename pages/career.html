@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Career Paths | SkillNest</title>
+  <link rel="icon" type="image/png" href="../Photo/SkillNest_logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800;900&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: "Poppins", sans-serif;
+      background: linear-gradient(180deg, #FF9A1F 0%, #FF7A00 50%, #2c3e50 100%);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* ==========================================
+       HEADER
+       ========================================== */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: rgba(10, 10, 10, 0.95);
+      backdrop-filter: blur(6px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 12px 24px;
+    }
+
+    .logo-img {
+      height: 40px;
+      width: auto;
+      cursor: pointer;
+      filter: drop-shadow(0 0 5px rgba(255, 122, 0, 0.3));
+    }
+
+    /* ==========================================
+       MAIN CONTENT
+       ========================================== */
+    .career-section {
+      min-height: calc(100vh - 64px);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 40px 20px;
+      perspective: 1500px;
+    }
+
+    .career-title {
+      color: white;
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-weight: 900;
+      text-align: center;
+      margin-bottom: 60px;
+      text-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    }
+
+    /* ==========================================
+       DOORS CONTAINER
+       ========================================== */
+    .doors-container {
+      display: flex;
+      justify-content: center;
+      align-items: flex-end;
+      gap: 40px;
+      flex-wrap: wrap;
+      max-width: 1400px;
+      width: 100%;
+    }
+
+    /* ==========================================
+       INDIVIDUAL DOOR
+       ========================================== */
+    .door-wrapper {
+      position: relative;
+      width: 280px;
+      height: 450px;
+      transform-style: preserve-3d;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+
+    .door-wrapper:hover {
+      transform: translateY(-10px);
+    }
+
+    .door-frame {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, #8B4513 0%, #654321 100%);
+      border-radius: 10px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+      padding: 15px;
+      overflow: hidden;
+    }
+
+    .door {
+      position: absolute;
+      width: calc(100% - 30px);
+      height: calc(100% - 30px);
+      background: linear-gradient(135deg, #CD853F 0%, #A0522D 100%);
+      border-radius: 5px;
+      transform-origin: left center;
+      transform-style: preserve-3d;
+      transition: transform 0.8s ease;
+      box-shadow: 
+        inset 0 0 0 10px #8B6914,
+        inset 0 0 0 20px #CD853F,
+        0 10px 30px rgba(0, 0, 0, 0.3);
+    }
+
+    .door-wrapper:hover .door {
+      transform: rotateY(-120deg);
+    }
+
+    /* ==========================================
+       DOOR PANELS
+       ========================================== */
+    .door-panel {
+      position: absolute;
+      border: 3px solid #704214;
+      border-radius: 3px;
+      background: rgba(139, 105, 20, 0.1);
+    }
+
+    .panel-top {
+      top: 30px;
+      left: 30px;
+      right: 30px;
+      height: 150px;
+    }
+
+    .panel-bottom {
+      bottom: 30px;
+      left: 30px;
+      right: 30px;
+      height: 150px;
+    }
+
+    /* ==========================================
+       DOOR HANDLE
+       ========================================== */
+    .door-handle {
+      position: absolute;
+      right: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 50px;
+      height: 25px;
+      background: linear-gradient(135deg, #D4AF37, #AA8B27);
+      border-radius: 12px;
+      box-shadow: 
+        0 2px 5px rgba(0, 0, 0, 0.3),
+        inset 0 1px 2px rgba(255, 255, 255, 0.3);
+    }
+
+    .handle-base {
+      position: absolute;
+      right: -8px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 16px;
+      height: 16px;
+      background: #A0522D;
+      border-radius: 50%;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+    }
+
+    /* ==========================================
+       BEHIND THE DOOR - CAREER INFO
+       ========================================== */
+    .room-behind {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, #2c3e50 0%, #1a252f 100%);
+      border-radius: 5px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      padding: 20px;
+      opacity: 0;
+      transition: opacity 0.5s ease;
+    }
+
+    .door-wrapper:hover .room-behind {
+      opacity: 1;
+    }
+
+    .career-icon {
+      width: 80px;
+      height: 80px;
+      margin-bottom: 15px;
+      filter: drop-shadow(0 4px 8px rgba(255, 255, 255, 0.2));
+    }
+
+    .career-name {
+      font-size: 24px;
+      font-weight: 700;
+      margin-bottom: 10px;
+      text-align: center;
+    }
+
+    .career-desc {
+      font-size: 14px;
+      text-align: center;
+      color: #bbb;
+      margin-bottom: 15px;
+    }
+
+    .enter-btn {
+      background: linear-gradient(135deg, #FF9A1F, #FF7A00);
+      color: white;
+      padding: 10px 25px;
+      border: none;
+      border-radius: 25px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(255, 122, 0, 0.4);
+    }
+
+    .enter-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(255, 122, 0, 0.6);
+    }
+
+    /* ==========================================
+       FLOOR
+       ========================================== */
+    .floor {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 100px;
+      background: linear-gradient(180deg, transparent 0%, #2c3e50 30%, #1a1a1a 100%);
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    /* ==========================================
+       MODAL
+       ========================================== */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 100;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.8);
+      backdrop-filter: blur(4px);
+    }
+
+    .modal-content {
+      background-color: #0f0f0f;
+      margin: 10% auto;
+      padding: 30px;
+      border: 1px solid #333;
+      width: 90%;
+      max-width: 450px;
+      border-radius: 12px;
+      text-align: center;
+      position: relative;
+      color: white;
+    }
+
+    .modal-content h2 {
+      color: #FF9A1F;
+      margin-bottom: 15px;
+    }
+
+    .modal-content p {
+      margin-bottom: 25px;
+      color: #bbb;
+    }
+
+    .modal-options {
+      display: flex;
+      justify-content: space-around;
+      gap: 15px;
+    }
+
+    .btn {
+      padding: 12px 30px;
+      border: none;
+      border-radius: 25px;
+      font-weight: 700;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+      transition: all 0.3s ease;
+    }
+
+    .btn-lime {
+      background: linear-gradient(180deg, #a1f55a, #8fd53c);
+      color: #0e2100;
+      box-shadow: 0 4px 15px rgba(161, 245, 90, 0.4);
+    }
+
+    .btn-lime:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(161, 245, 90, 0.6);
+    }
+
+    .btn-amber {
+      background: linear-gradient(180deg, #f6c544, #ffb300);
+      color: #1a1500;
+      box-shadow: 0 4px 15px rgba(246, 197, 68, 0.4);
+    }
+
+    .btn-amber:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(246, 197, 68, 0.6);
+    }
+
+    .close-btn {
+      color: #aaa;
+      float: right;
+      font-size: 28px;
+      font-weight: bold;
+      position: absolute;
+      top: 10px;
+      right: 20px;
+      cursor: pointer;
+    }
+
+    .close-btn:hover {
+      color: white;
+    }
+
+    .Freedom {
+      color: #8fd53c;
+    }
+
+    .Plan {
+      color: #ff7a00;
+    }
+
+    /* ==========================================
+       RESPONSIVE
+       ========================================== */
+    @media (max-width: 1200px) {
+      .doors-container {
+        gap: 30px;
+      }
+      .door-wrapper {
+        width: 240px;
+        height: 380px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .doors-container {
+        gap: 20px;
+      }
+      .door-wrapper {
+        width: 200px;
+        height: 320px;
+      }
+      .career-icon {
+        width: 60px;
+        height: 60px;
+      }
+      .career-name {
+        font-size: 20px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .doors-container {
+        flex-direction: column;
+        gap: 30px;
+      }
+      .door-wrapper {
+        width: 280px;
+        height: 400px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- ==========================================
+       HEADER
+       ========================================== -->
+  <header class="site-header">
+    <a href="../index.html">
+      <img src="../Photo/SkillNest_logotext.png" alt="SkillNest Logo" class="logo-img">
+    </a>
+  </header>
+
+  <!-- ==========================================
+       MAIN CONTENT
+       ========================================== -->
+  <main>
+    <section class="career-section">
+      <h1 class="career-title">Choose Your Career Path</h1>
+      
+      <div class="doors-container">
+        
+        <!-- Door 1: Programmer -->
+        <div class="door-wrapper" onclick="openPathModal('programmer')">
+          <div class="door-frame">
+            <div class="room-behind">
+              <img src="../Photo/progammerlogo.png" alt="Programmer" class="career-icon">
+              <div class="career-name">Programmer</div>
+              <div class="career-desc">Build the future with code</div>
+              <button class="enter-btn">Enter →</button>
+            </div>
+            <div class="door">
+              <div class="door-panel panel-top"></div>
+              <div class="door-panel panel-bottom"></div>
+              <div class="door-handle">
+                <div class="handle-base"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Door 2: Content Creator -->
+        <div class="door-wrapper" onclick="openPathModal('content-creator')">
+          <div class="door-frame">
+            <div class="room-behind">
+              <img src="../Photo/contentcreatorlogo.png" alt="Content Creator" class="career-icon">
+              <div class="career-name">Content Creator</div>
+              <div class="career-desc">Create engaging content</div>
+              <button class="enter-btn">Enter →</button>
+            </div>
+            <div class="door">
+              <div class="door-panel panel-top"></div>
+              <div class="door-panel panel-bottom"></div>
+              <div class="door-handle">
+                <div class="handle-base"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Door 3: Marketing -->
+        <div class="door-wrapper" onclick="openPathModal('marketing')">
+          <div class="door-frame">
+            <div class="room-behind">
+              <img src="../Photo/marketinglogo.png" alt="Marketing" class="career-icon">
+              <div class="career-name">Marketing</div>
+              <div class="career-desc">Drive business growth</div>
+              <button class="enter-btn">Enter →</button>
+            </div>
+            <div class="door">
+              <div class="door-panel panel-top"></div>
+              <div class="door-panel panel-bottom"></div>
+              <div class="door-handle">
+                <div class="handle-base"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Door 4: Project Manager -->
+        <div class="door-wrapper" onclick="openPathModal('project-manager')">
+          <div class="door-frame">
+            <div class="room-behind">
+              <img src="../Photo/projectmanagerlogo.png" alt="Project Manager" class="career-icon">
+              <div class="career-name">Project Manager</div>
+              <div class="career-desc">Lead teams to success</div>
+              <button class="enter-btn">Enter →</button>
+            </div>
+            <div class="door">
+              <div class="door-panel panel-top"></div>
+              <div class="door-panel panel-bottom"></div>
+              <div class="door-handle">
+                <div class="handle-base"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <div class="floor"></div>
+
+  <!-- ==========================================
+       MODAL
+       ========================================== -->
+  <div id="pathModal" class="modal">
+    <div class="modal-content">
+      <span class="close-btn" onclick="closePathModal()">&times;</span>
+      <h2 id="modalTitle">Select Path</h2>
+      <p>
+        Choose your learning path<br>
+        <span class="Freedom">Freedom:</span> allows the user to choose lessons according to their preference<br>
+        <span class="Plan">Plan:</span> study according to the lessons provided by the website application
+      </p>
+      <div class="modal-options">
+        <a href="#" id="freedomLink" class="btn btn-lime">Freedom</a>
+        <a href="#" id="planningLink" class="btn btn-amber">Planning</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================
+       JAVASCRIPT
+       ========================================== -->
+  <script>
+    function openPathModal(careerSlug) {
+      const modal = document.getElementById('pathModal');
+      const modalTitle = document.getElementById('modalTitle');
+      const freedomLink = document.getElementById('freedomLink');
+      const planningLink = document.getElementById('planningLink');
+      
+      const displayTitle = careerSlug
+        .split('-')
+        .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+        .join(' ');
+      
+      modalTitle.textContent = `Select Path for ${displayTitle}`;
+      freedomLink.href = `course/${careerSlug}-freedom.html`;
+      planningLink.href = `course/${careerSlug}-planning.html`;
+      
+      modal.style.display = "block";
+    }
+
+    function closePathModal() {
+      document.getElementById('pathModal').style.display = "none";
+    }
+
+    window.onclick = function(event) {
+      const modal = document.getElementById('pathModal');
+      if (event.target == modal) {
+        modal.style.display = "none";
+      }
+    }
+  </script>
+</body>
+</html>
